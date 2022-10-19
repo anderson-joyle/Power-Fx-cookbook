@@ -15,9 +15,9 @@ Non-official collection of solutions and examples for this new programming langu
 ## How to
 ### Errors
 #### New ErrorKind element
-  - Update **...\src\libraries\Microsoft.PowerFx.Core\Types\Enums\EnumStoreBuilder.cs**, adding `NEW_ELEMENT_NAME: NEW_VALUE` at the end of the ErrorKindEnumString definition
-  - Add a `NEW_ELEMENT_NAME = NEW_VALUE` at the end of ...\src\libraries\Microsoft.PowerFx.Core\Public\ErrorKind.cs
-  - Update strings\PowerFxResources.en-US.resx to add this element (after the definition of ErrorKind_Internal_Name)
+  - Update **...\src\libraries\Microsoft.PowerFx.Core\Types\Enums\EnumStoreBuilder.cs**, adding `NEW_ELEMENT_NAME: NEW_VALUE` at the end of the ErrorKindEnumString definition.
+  - Add a `NEW_ELEMENT_NAME = NEW_VALUE` at the end of ...\src\libraries\Microsoft.PowerFx.Core\Public\ErrorKind.cs.
+  - Update strings\PowerFxResources.en-US.resx to add this element (after the definition of ErrorKind_Internal_Name).
   
 ```
 <data name="ErrorKind_NEW_ELEMENT_NAME_Name" xml:space="preserve">
@@ -26,7 +26,7 @@ Non-official collection of solutions and examples for this new programming langu
   </data>
 ```
 
-And update the code to use this new enum value
+And update the code to use this new enum value.
 
 ### Logging
 #### Anonymized expressions
@@ -38,9 +38,6 @@ var check = engine.Check(myValue.ToExpression());
 // Set(#$firstname$#, #$number$# + #$number$#)#$error$#Launch(#$string$#, #$firstname$#.#$righthandid$#, Parent.#$righthandid$#)
 check.Parse.GetAnonymizedFormula();
 ```
-
-
-### Serialize and Deserialize
 
 ### Serialize and Deserialize
 Power Fx offers a simple way to serialize and deserialize FormulaValue values.
