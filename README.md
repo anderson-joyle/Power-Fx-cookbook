@@ -8,7 +8,7 @@ Non-official collection of solutions and examples for this new programming langu
 - [How to](#how-to)
   - [Errors](#errors)
     - [New ErrorKind element](#new-errorkind-element)
-  - Logging
+  - [Logging](#logging)
     - [Anonymized expressions](#anonymized-expressions)
   - [Serialize and Deserialize](#serialize-and-deserialize)
 
@@ -28,7 +28,8 @@ Non-official collection of solutions and examples for this new programming langu
 
 And update the code to use this new enum value
 
-### Anonymized expressions
+### Logging
+#### Anonymized expressions
 In the event you need to log which expressions are being executed but wants to keep any identifier/values private (for audit purposes for example), call ParseResult.GetAnonymizedFormula() method.
 ```
 var engine = new Engine(new PowerFxConfig());
