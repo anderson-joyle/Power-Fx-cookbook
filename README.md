@@ -5,13 +5,42 @@ Non-official collection of solutions and examples for this new programming langu
 
 ## Table of content
 
-- [What](#what)
 - [How to](#how-to)
-  - [Serialize and Deserialize](#serialize-and-deserialize)
   - [Errors](#errors)
     - [New ErrorKind element](#new-errorkind-element)
+  - Logging
+    - [Anonymized expressions](#anonymized-expressions)
+  - [Serialize and Deserialize](#serialize-and-deserialize)
 
 ## How to
+### Errors
+#### New ErrorKind element
+  - Update **...\src\libraries\Microsoft.PowerFx.Core\Types\Enums\EnumStoreBuilder.cs**, adding `NEW_ELEMENT_NAME: NEW_VALUE` at the end of the ErrorKindEnumString definition
+  - Add a `NEW_ELEMENT_NAME = NEW_VALUE` at the end of ...\src\libraries\Microsoft.PowerFx.Core\Public\ErrorKind.cs
+  - Update strings\PowerFxResources.en-US.resx to add this element (after the definition of ErrorKind_Internal_Name)
+  
+```
+<data name="ErrorKind_NEW_ELEMENT_NAME_Name" xml:space="preserve">
+    <value>NEW_ELEMENT_NAME</value>
+    <comment>{Locked} Enum value</comment>
+  </data>
+```
+
+And update the code to use this new enum value
+
+### Anonymized expressions
+In the event you need to log which expressions are being executed but wants to keep any identifier/values private (for audit purposes for example), call ParseResult.GetAnonymizedFormula() method.
+```
+var engine = new Engine(new PowerFxConfig());
+var check = engine.Check(myValue.ToExpression());
+
+// Set(#$firstname$#, #$number$# + #$number$#)#$error$#Launch(#$string$#, #$firstname$#.#$righthandid$#, Parent.#$righthandid$#)
+check.Parse.GetAnonymizedFormula();
+```
+
+
+### Serialize and Deserialize
+
 ### Serialize and Deserialize
 Power Fx offers a simple way to serialize and deserialize FormulaValue values.
 To serialize, call "ToExpression" method on any FormulaValue derived types (StringValue, NumberValue, etc) to get a serialized value version.
@@ -30,18 +59,3 @@ var result = check.GetEvaluator().Eval();
 
 result.ToObject(); // 100
 ```
-
-### Errors
-#### New ErrorKind element
-  - Update **...\src\libraries\Microsoft.PowerFx.Core\Types\Enums\EnumStoreBuilder.cs**, adding `NEW_ELEMENT_NAME: NEW_VALUE` at the end of the ErrorKindEnumString definition
-  - Add a `NEW_ELEMENT_NAME = NEW_VALUE` at the end of ...\src\libraries\Microsoft.PowerFx.Core\Public\ErrorKind.cs
-  - Update strings\PowerFxResources.en-US.resx to add this element (after the definition of ErrorKind_Internal_Name)
-  
-```
-<data name="ErrorKind_NEW_ELEMENT_NAME_Name" xml:space="preserve">
-    <value>NEW_ELEMENT_NAME</value>
-    <comment>{Locked} Enum value</comment>
-  </data>
-```
-
-And update the code to use this new enum value
