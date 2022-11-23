@@ -8,6 +8,8 @@ Non-official collection of solutions and examples for this new programming langu
 - [How to](#how-to)
   - [Errors](#errors)
     - [New ErrorKind element](#new-errorkind-element)
+  - [Locale](#locale)
+    - [Translate error messages](translate-error-messages)
   - [Logging](#logging)
     - [Anonymized expressions](#anonymized-expressions)
   - [Serialize and Deserialize](#serialize-and-deserialize)
@@ -27,6 +29,21 @@ Non-official collection of solutions and examples for this new programming langu
 ```
 
 And update the code to use this new enum value.
+
+### Locale
+#### Translate error messages
+Error message translation can be done by specifying the desired locale to the PowerFxConfig object:
+
+```
+var config_ptBR = new PowerFxConfig(CultureInfo.GetCultureInfo("pt-BR"));
+var engine = new Engine(config_ptBR);
+```
+
+Then check is an expression is valid:
+```
+var check = engine.Check("7E1111111");
+check.Errors.Dump(); // Error 0-9: O valor numérico é grande demais.
+```
 
 ### Logging
 #### Anonymized expressions
