@@ -14,7 +14,7 @@ Non-official collection of solutions and examples for this new programming langu
     - [Anonymized expressions](#anonymized-expressions)
   - [Serialize and Deserialize](#serialize-and-deserialize)
   - [Testing](#testing)
-    - (Entity)[#entity]
+    - [Entity](#entity)
 
 ## How to
 ### Errors
