@@ -5,20 +5,24 @@ Non-official collection of solutions and examples for this new programming langu
 
 ## Table of content
 
-- [How to](#how-to)
-  - [Errors](#errors)
-    - [New ErrorKind element](#new-errorkind-element)
-  - [Locale](#locale)
-    - [Translate error messages](#translate-error-messages)
-  - [Logging](#logging)
-    - [Anonymized expressions](#anonymized-expressions)
-  - [Serialize and Deserialize](#serialize-and-deserialize)
-  - [Testing](#testing)
-    - [Entity](#entity)
+- [Compile](#compile)
+- [Evaluate](#evaluate)
+- [Errors](#errors)
+  - [New ErrorKind element](#new-errorkind-element)
+- [Locale](#locale)
+  - [Translate error messages](#translate-error-messages)
+- [Logging](#logging)
+  - [Anonymized expressions](#anonymized-expressions)
+- [Serialize and Deserialize](#serialize-and-deserialize)
+- [Testing](#testing)
+  - [Entity](#entity)
 
-## How to
-### Errors
-#### New ErrorKind element
+## Compile
+  Coming soon.
+## Evaluate
+  Coming soon.
+## Errors
+### New ErrorKind element
   - Update **...\src\libraries\Microsoft.PowerFx.Core\Types\Enums\EnumStoreBuilder.cs**, adding `NEW_ELEMENT_NAME: NEW_VALUE` at the end of the ErrorKindEnumString definition.
   - Add a `NEW_ELEMENT_NAME = NEW_VALUE` at the end of ...\src\libraries\Microsoft.PowerFx.Core\Public\ErrorKind.cs.
   - Update strings\PowerFxResources.en-US.resx to add this element (after the definition of ErrorKind_Internal_Name).
@@ -32,8 +36,8 @@ Non-official collection of solutions and examples for this new programming langu
 
 And update the code to use this new enum value.
 
-### Locale
-#### Translate error messages
+## Locale
+### Translate error messages
 Error message translation can be done by specifying the desired locale to the PowerFxConfig object:
 
 ```
@@ -47,8 +51,8 @@ var check = engine.Check("7E1111111");
 check.Errors.Dump(); // Error 0-9: O valor numérico é grande demais.
 ```
 
-### Logging
-#### Anonymized expressions
+## Logging
+### Anonymized expressions
 If you need to log which expressions are being executed but want to keep any identifier/values private (for audit purposes for example), call CheckResult.ApplyGetLogging() instance method.
 ```
 var engine = new Engine(new PowerFxConfig());
@@ -60,7 +64,7 @@ check.ApplyGetLogging();
 
 Please note that `check.ApplyGetLogging()` can produce different results depending if binding has been applied or not.
 
-### Serialize and Deserialize
+## Serialize and Deserialize
 Power Fx offers a simple way to serialize and deserialize FormulaValue values.
 To serialize, call "ToExpression" method on any FormulaValue derived types (StringValue, NumberValue, etc) to get a serialized value version.
 
@@ -79,7 +83,7 @@ var result = check.GetEvaluator().Eval();
 result.ToObject(); // 100
 ```
 
-### Testing
+## Testing
 The following is a list of references to test different cases:
-#### Entity
+### Entity
 - Mock an entity (table or record connected to database): https://github.com/microsoft/Power-Fx/blob/5728ac2f3d7bb27b2fdf9e194454b7db5c666b69/src/tests/Microsoft.PowerFx.Interpreter.Tests/DatabaseSimulationTests.cs
