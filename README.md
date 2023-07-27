@@ -9,7 +9,7 @@ Non-official collection of solutions and examples for this new programming langu
   - [Errors](#errors)
     - [New ErrorKind element](#new-errorkind-element)
   - [Locale](#locale)
-    - [Translate error messages](translate-error-messages)
+    - [Translate error messages](#translate-error-messages)
   - [Logging](#logging)
     - [Anonymized expressions](#anonymized-expressions)
   - [Serialize and Deserialize](#serialize-and-deserialize)
