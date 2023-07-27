@@ -1,5 +1,5 @@
 # Power Fx cookbook 👨‍🍳
-Non-official collection of solutions and examples for this new programming language. <i>Primarily written for my own benefit, but hopefully helpful to someone else as well.</i>
+Non-official collection of solutions and examples for this new programming language, from a **host** perspective. <i>Primarily written for my own benefit, but hopefully helpful to someone else as well.</i>
 
 ***
 
@@ -13,6 +13,8 @@ Non-official collection of solutions and examples for this new programming langu
   - [Logging](#logging)
     - [Anonymized expressions](#anonymized-expressions)
   - [Serialize and Deserialize](#serialize-and-deserialize)
+  - [Testing](#testing)
+    - (Entity)[#entity]
 
 ## How to
 ### Errors
@@ -47,14 +49,16 @@ check.Errors.Dump(); // Error 0-9: O valor numérico é grande demais.
 
 ### Logging
 #### Anonymized expressions
-In the event you need to log which expressions are being executed but wants to keep any identifier/values private (for audit purposes for example), call ParseResult.GetAnonymizedFormula() method.
+If you need to log which expressions are being executed but want to keep any identifier/values private (for audit purposes for example), call CheckResult.ApplyGetLogging() instance method.
 ```
 var engine = new Engine(new PowerFxConfig());
 var check = engine.Check(myValue.ToExpression());
 
 // Set(#$firstname$#, #$number$# + #$number$#)#$error$#Launch(#$string$#, #$firstname$#.#$righthandid$#, Parent.#$righthandid$#)
-check.Parse.GetAnonymizedFormula();
+check.ApplyGetLogging();
 ```
+
+Please note that `check.ApplyGetLogging()` can produce different results depending if binding has been applied or not.
 
 ### Serialize and Deserialize
 Power Fx offers a simple way to serialize and deserialize FormulaValue values.
@@ -65,7 +69,7 @@ var myValue = FormulaValue.New(100);
 myValue.ToExpression().Dump(); // "100"
 ```
 
-To deserialize, call Eval to rehidrate the previously serialized value back to a FormulaValue.
+To deserialize, call Eval to rehydrate the previously serialized value back to a FormulaValue.
 ```
 var myValue = FormulaValue.New(100);
 var engine = new Engine(new PowerFxConfig());
@@ -74,3 +78,8 @@ var result = check.GetEvaluator().Eval();
 
 result.ToObject(); // 100
 ```
+
+### Testing
+The following is a list of references to test different cases:
+#### Entity
+- Mock an entity (table or record connected to database): https://github.com/microsoft/Power-Fx/blob/5728ac2f3d7bb27b2fdf9e194454b7db5c666b69/src/tests/Microsoft.PowerFx.Interpreter.Tests/DatabaseSimulationTests.cs
