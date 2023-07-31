@@ -5,8 +5,9 @@ Non-official collection of solutions and examples for this new programming langu
 
 ## Table of content
 
-- [Compile](#compile)
-- [Evaluate](#evaluate)
+- [Engine](#engine)
+  - [Compile](#compile)
+  - [Evaluate](#evaluate)
 - [Errors](#errors)
   - [New ErrorKind element](#new-errorkind-element)
 - [Locale](#locale)
@@ -17,10 +18,36 @@ Non-official collection of solutions and examples for this new programming langu
 - [Testing](#testing)
   - [Entity](#entity)
 
-## Compile
+## Engine
+### Compile
+  Compile time checks for sintax errors, unknown symbols, and other possible errors. Some good test cases for CheckResult can be found [here](https://github.com/microsoft/Power-Fx/blob/39585c758dbf02a00b509a50911f960ebdaef1f0/src/tests/Microsoft.PowerFx.Core.Tests/CheckResultTests.cs).
+  The following is the simplest way to verify if an expression is a valid:
+  ```
+  var expression = "1 + 2"; // Some Power Fx expression
+  var engine = new RecalcEngine(config);
+  var checkResult = engine.Check(expression);
+
+  if (checkResult.IsSuccess)
+  {
+    // Expression is valid.
+  }
+  ```
+
+  The `engine.Check()` method accepts some arguments:
   Coming soon.
-## Evaluate
+  
+### Evaluate
+  Runtime evaluate a Power Fx expression and returns a result value (FormulaValue).
+  The following is the simplest way to verify if an expression is a valid:
+  ```
+  var expression = "1 + 2"; // Some Power Fx expression
+  var engine = new RecalcEngine(config);
+  var result = engine.Eval(expression); // Returns a FormulaValue derived object if the expression is valid.
+  ```
+
+  The `engine.Eval()` method accepts some arguments:
   Coming soon.
+
 ## Errors
 ### New ErrorKind element
   - Update **...\src\libraries\Microsoft.PowerFx.Core\Types\Enums\EnumStoreBuilder.cs**, adding `NEW_ELEMENT_NAME: NEW_VALUE` at the end of the ErrorKindEnumString definition.
