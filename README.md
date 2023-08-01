@@ -8,6 +8,7 @@ Non-official collection of solutions and examples for this new programming langu
 - [Engine](#engine)
   - [Compile](#compile)
   - [Evaluate](#evaluate)
+  - [Symbols](#symbols)
 - [Errors](#errors)
   - [New ErrorKind element](#new-errorkind-element)
 - [Locale](#locale)
@@ -20,8 +21,8 @@ Non-official collection of solutions and examples for this new programming langu
 
 ## Engine
 ### Compile
-  Compile time checks for sintax errors, unknown symbols, and other possible errors. Some good test cases for CheckResult can be found [here](https://github.com/microsoft/Power-Fx/blob/39585c758dbf02a00b509a50911f960ebdaef1f0/src/tests/Microsoft.PowerFx.Core.Tests/CheckResultTests.cs).
-  The following is the simplest way to verify if an expression is a valid:
+  Compile time checks for syntax errors, unknown symbols, and other possible errors. Some good test cases for CheckResult can be found [here](https://github.com/microsoft/Power-Fx/blob/39585c758dbf02a00b509a50911f960ebdaef1f0/src/tests/Microsoft.PowerFx.Core.Tests/CheckResultTests.cs).
+  The following is the simplest way to verify if an expression is valid:
   ```
   var expression = "1 + 2"; // Some Power Fx expression
   var engine = new RecalcEngine(config);
@@ -38,7 +39,7 @@ Non-official collection of solutions and examples for this new programming langu
   
 ### Evaluate
   Runtime evaluate a Power Fx expression and returns a result value (FormulaValue).
-  The following is the simplest way to verify if an expression is a valid:
+  The following is the simplest way to verify if an expression is valid:
   ```
   var expression = "1 + 2"; // Some Power Fx expression
   var engine = new RecalcEngine(config);
@@ -47,6 +48,11 @@ Non-official collection of solutions and examples for this new programming langu
 
   The `engine.Eval()` method accepts some arguments:
   Coming soon.
+
+### Symbol
+Symbols are variables (locals, globals), enums, options sets, and functions provided to the engine. They are mutable to support sessionful scenarios and can be chained together.
+- SymbolsTable: Coming soon.
+- SymbolsValue: Coming soon.
 
 ## Errors
 ### New ErrorKind element
