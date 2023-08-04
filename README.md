@@ -49,10 +49,10 @@ Non-official collection of solutions and examples for this new programming langu
   The `engine.Eval()` method accepts some arguments:
   Coming soon.
 
-### Symbol
+### Symbols
 Symbols are variables (locals, globals), enums, options sets, and functions provided to the engine. They are mutable to support sessionful scenarios and can be chained together.
-- SymbolsTable: Coming soon.
-- SymbolsValue: Coming soon.
+- **SymbolsTable**: Stores variable definitions (names and their types). This feeds functions, variables, enums, etc into the binder. You can use [these test cases](https://github.com/microsoft/Power-Fx/blob/79029952e0700255b963e2bb6d615d44dac65412/src/tests/Microsoft.PowerFx.Interpreter.Tests/SymbolValueTests.cs) as a reference.
+- **SymbolsValue**: Runtime values corresponding to static values described in a SymbolTable. You can use [these other test cases](https://github.com/microsoft/Power-Fx/blob/79029952e0700255b963e2bb6d615d44dac65412/src/tests/Microsoft.PowerFx.Core.Tests/SymbolTableTests.cs) as a reference.
 
 ## Errors
 ### New ErrorKind element
@@ -78,7 +78,7 @@ var config_ptBR = new PowerFxConfig(CultureInfo.GetCultureInfo("pt-BR"));
 var engine = new Engine(config_ptBR);
 ```
 
-Then check is an expression is valid:
+Then check if an expression is valid:
 ```
 var check = engine.Check("7E1111111");
 check.Errors.Dump(); // Error 0-9: O valor numérico é grande demais.
@@ -99,7 +99,7 @@ Please note that `check.ApplyGetLogging()` can produce different results dependi
 
 ## Serialize and Deserialize
 Power Fx offers a simple way to serialize and deserialize FormulaValue values.
-To serialize, call "ToExpression" method on any FormulaValue derived types (StringValue, NumberValue, etc) to get a serialized value version.
+To serialize, call the "ToExpression()" method on any FormulaValue derived types (StringValue, NumberValue, etc) to get a serialized value version.
 
 ```
 var myValue = FormulaValue.New(100);
