@@ -56,6 +56,8 @@ Symbols are variables (locals, globals), enums, options sets, and functions prov
 
 Some common tricks with Symbols:
 - Compose symbols: It is possible to combine two or more symbol objects into a single one. This can be done by calling `ReadOnlySymbolTable.Compose` ([test case](https://github.com/microsoft/Power-Fx/blob/79029952e0700255b963e2bb6d615d44dac65412/src/tests/Microsoft.PowerFx.Core.Tests/SymbolTableTests.cs#L139)) or `ReadOnlySymbolValues.Compose` ([test case](https://github.com/microsoft/Power-Fx/blob/79029952e0700255b963e2bb6d615d44dac65412/src/tests/Microsoft.PowerFx.Interpreter.Tests/SymbolValueTests.cs#L322)) methods.
+- Add services: Coming soon.
+- Add/Remove functions: Coming soon.
 
 ## Errors
 ### New ErrorKind element
