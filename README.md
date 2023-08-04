@@ -38,7 +38,7 @@ Non-official collection of solutions and examples for this new programming langu
   Coming soon.
   
 ### Evaluate
-  Runtime evaluate a Power Fx expression and returns a result value (FormulaValue).
+  Runtime evaluates a Power Fx expression and returns a result value (FormulaValue).
   The following is the simplest way to verify if an expression is valid:
   ```
   var expression = "1 + 2"; // Some Power Fx expression
@@ -51,8 +51,11 @@ Non-official collection of solutions and examples for this new programming langu
 
 ### Symbols
 Symbols are variables (locals, globals), enums, options sets, and functions provided to the engine. They are mutable to support sessionful scenarios and can be chained together.
-- **SymbolsTable**: Stores variable definitions (names and their types). This feeds functions, variables, enums, etc into the binder. You can use [these test cases](https://github.com/microsoft/Power-Fx/blob/79029952e0700255b963e2bb6d615d44dac65412/src/tests/Microsoft.PowerFx.Interpreter.Tests/SymbolValueTests.cs) as a reference.
-- **SymbolsValue**: Runtime values corresponding to static values described in a SymbolTable. You can use [these other test cases](https://github.com/microsoft/Power-Fx/blob/79029952e0700255b963e2bb6d615d44dac65412/src/tests/Microsoft.PowerFx.Core.Tests/SymbolTableTests.cs) as a reference.
+- **SymbolsTable**: Stores variable definitions (names and their types). This feeds functions, variables, enums, etc into the binder. Check [these test cases](https://github.com/microsoft/Power-Fx/blob/79029952e0700255b963e2bb6d615d44dac65412/src/tests/Microsoft.PowerFx.Interpreter.Tests/SymbolValueTests.cs) for reference.
+- **SymbolsValue**: Runtime values corresponding to static values described in a SymbolTable. Check [these other test cases](https://github.com/microsoft/Power-Fx/blob/79029952e0700255b963e2bb6d615d44dac65412/src/tests/Microsoft.PowerFx.Core.Tests/SymbolTableTests.cs) for reference.
+
+Some common tricks with Symbols:
+- Compose symbols: It is possible to combine two or more symbol objects into a single one. This can be done by calling `ReadOnlySymbolTable.Compose` ([test case](https://github.com/microsoft/Power-Fx/blob/79029952e0700255b963e2bb6d615d44dac65412/src/tests/Microsoft.PowerFx.Core.Tests/SymbolTableTests.cs#L139)) or `ReadOnlySymbolValues.Compose` ([test case](https://github.com/microsoft/Power-Fx/blob/79029952e0700255b963e2bb6d615d44dac65412/src/tests/Microsoft.PowerFx.Interpreter.Tests/SymbolValueTests.cs#L322)) methods.
 
 ## Errors
 ### New ErrorKind element
@@ -119,4 +122,4 @@ result.ToObject(); // 100
 ## Testing
 The following is a list of references to test different cases:
 ### Entity
-- Mock an entity (table or record connected to database): https://github.com/microsoft/Power-Fx/blob/5728ac2f3d7bb27b2fdf9e194454b7db5c666b69/src/tests/Microsoft.PowerFx.Interpreter.Tests/DatabaseSimulationTests.cs
+- [Mock an entity (table or record connected to database).](https://github.com/microsoft/Power-Fx/blob/5728ac2f3d7bb27b2fdf9e194454b7db5c666b69/src/tests/Microsoft.PowerFx.Interpreter.Tests/DatabaseSimulationTests.cs)
