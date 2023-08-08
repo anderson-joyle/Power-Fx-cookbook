@@ -16,6 +16,7 @@ Non-official collection of solutions and examples for this new programming langu
 - [Logging](#logging)
   - [Anonymized expressions](#anonymized-expressions)
 - [Serialize and Deserialize](#serialize-and-deserialize)
+- [Intellisense](#intellisense)
 - [Testing](#testing)
   - [Entity](#entity)
 
@@ -120,6 +121,9 @@ var result = check.GetEvaluator().Eval();
 
 result.ToObject(); // 100
 ```
+
+## Intellisense
+Coming soon.
 
 ## Testing
 The following is a list of references to test different cases:
