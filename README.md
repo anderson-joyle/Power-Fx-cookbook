@@ -82,7 +82,7 @@ Let's break down the above user-defined function:
 -  `price * (1 - perc / 100)` user-defined function implementation.
 -  `;` makes it possible to declare multiple user-defined functions at once.
 
-[These test cases]([url](https://github.com/microsoft/Power-Fx/blob/c08be46288912e5e476490e1faf48798f4f57370/src/tests/Microsoft.PowerFx.Interpreter.Tests/RecalcEngineTests.cs#L414)) will give a good understanding of user-defined functions capabilities. 
+[These test cases](https://github.com/microsoft/Power-Fx/blob/c08be46288912e5e476490e1faf48798f4f57370/src/tests/Microsoft.PowerFx.Interpreter.Tests/RecalcEngineTests.cs#L414) will give a good understanding of user-defined functions capabilities. 
 
 ## Locale
 ### Translate error messages
