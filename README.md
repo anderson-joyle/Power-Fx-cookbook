@@ -9,8 +9,7 @@ Non-official collection of solutions and examples for this new programming langu
   - [Compile](#compile)
   - [Evaluate](#evaluate)
   - [Symbols](#symbols)
-- [Errors](#errors)
-  - [New ErrorKind element](#new-errorkind-element)
+  - [User-defined functions](#user-defined-functions)
 - [Locale](#locale)
   - [Translate error messages](#translate-error-messages)
 - [Logging](#logging)
@@ -60,20 +59,30 @@ Some common tricks with Symbols:
 - **Add services**: Coming soon.
 - **Add/Remove functions**: Coming soon.
 
-## Errors
-### New ErrorKind element
-  - Update **...\src\libraries\Microsoft.PowerFx.Core\Types\Enums\EnumStoreBuilder.cs**, adding `NEW_ELEMENT_NAME: NEW_VALUE` at the end of the ErrorKindEnumString definition.
-  - Add a `NEW_ELEMENT_NAME = NEW_VALUE` at the end of ...\src\libraries\Microsoft.PowerFx.Core\Public\ErrorKind.cs.
-  - Update strings\PowerFxResources.en-US.resx to add this element (after the definition of ErrorKind_Internal_Name).
-  
+### User-defined functions
+Hosts can add low-code customized functions to the engine:
+
+Example: `ApplyDiscount(price:Decimal,perc:Decimal):Decimal = price * (1 - perc / 100);`
+
 ```
-<data name="ErrorKind_NEW_ELEMENT_NAME_Name" xml:space="preserve">
-    <value>NEW_ELEMENT_NAME</value>
-    <comment>{Locked} Enum value</comment>
-  </data>
+var udfScript = "ApplyDiscount(price:Decimal,perc:Decimal):Decimal = price * (1 - perc / 100);";
+
+var recalcEngine = new RecalcEngine();
+recalcEngine.AddUserDefinedFunction(udfScript, CultureInfo.InvariantCulture);
+
+// Other engine configuration code
+
+var newPrice = recalcEngine.Eval("ApplyDiscount(item.Price, 10)");
 ```
 
-And update the code to use this new enum value.
+Let's break down the above user-defined function:
+-  `ApplyDiscount` is the user-defined function name.
+-  `(price:Decimal,perc:Decimal)` declares all the function's arguments. The syntax is `(arg_name:arg_type)`.
+-  `:Decimal` is the function return type.
+-  `price * (1 - perc / 100)` user-defined function implementation.
+-  `;` makes it possible to declare multiple user-defined functions at once.
+
+[These test cases]([url](https://github.com/microsoft/Power-Fx/blob/c08be46288912e5e476490e1faf48798f4f57370/src/tests/Microsoft.PowerFx.Interpreter.Tests/RecalcEngineTests.cs#L414)) will give a good understanding of user-defined functions capabilities. 
 
 ## Locale
 ### Translate error messages
